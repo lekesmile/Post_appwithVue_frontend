@@ -25,8 +25,12 @@
     v-bind:index="index"
     v-bind:key="post._id"
     >
+      <div class="individual-post">
       <p class="text"> {{post.text}} </p>
-      <p class="text">{{post.createdAt}} </p>
+      <p class="text">{{`${post.createdAt}`}} </p>
+      <button class="btn-post1">Update</button>
+      <button class="btn-post2" v-on:click="deletePost" type="submit">Delete</button>
+      </div>
     
     </div>
   </div>
@@ -80,10 +84,21 @@ export default {
       }
     
       
-    }
+    },
+     async deletePost(){
+     try {
+       await PostService.deletePost(this.posts._id)
+     } catch (error) {
+       this.error = error.message
+     }
+  }
+
   },
 
+ 
+  
 }
+ 
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -125,6 +140,48 @@ p.error {
   background-color: #ffc5c1;
   padding:  10px;
   margin-bottom: 15px;
+}
+
+.individual-post{
+  background-color: #4CAF50;
+  color: white;
+  padding: 20px 0;
+  margin: 10px 0;
+}
+.btn-post1{
+  background-color: white;
+  color: black;
+  border: 2px solid #4CAF50; 
+  padding: 10px 24px;
+  font-size: 10px;
+  border-radius: 6px;
+  font-weight:  bold;
+  cursor: pointer;
+  text-align: center;
+  width: 8%;
+  
+}
+.btn-post1:hover{
+  background-color: black; /* Green */
+  color: white;
+}
+.btn-post2{
+ background-color: white;
+  color: red;
+  border: 2px solid #4CAF50; /* Green */
+  padding: 10px 24px;
+  font-size: 10px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight:  bold;
+  cursor: pointer;
+  text-align: center;
+    width: 8%;
+
+}
+.btn-post2:hover{
+  background-color: red; /* Green */
+  color: white;
 }
 
 </style>
