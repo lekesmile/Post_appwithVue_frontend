@@ -71,15 +71,14 @@ export default {
 //send a post request
 
   methods: {
-    async createPost(e, success){
+    async createPost(success){
       try {
-         if(e){
-        e.preventDefault();
-      }
+         
        await PostService.createPost(this.text)
        this.posts = await PostService.getPosts();
        this.text= ''
        this.success = success
+      
       } catch (error) {
         this.error = error.message
       }
@@ -140,6 +139,12 @@ button{
 p.error {
   border: 1px solid #ff5b5f;
   background-color: #ffc5c1;
+  padding:  10px;
+  margin-bottom: 15px;
+}
+p.success {
+  border: 1px solid #b9ceb4;
+  background-color: #b9251a;
   padding:  10px;
   margin-bottom: 15px;
 }
