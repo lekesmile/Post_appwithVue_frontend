@@ -38,6 +38,7 @@
 
 <script>
 import PostService from '../PostService'
+// import PostFunctions from '../PostFunctions'
 
 export default {
   name: 'PostComponent',
@@ -88,6 +89,7 @@ export default {
      async deletePost(){
      try {
        await PostService.deletePost(this.posts._id)
+       console.log(this.posts._id)
      } catch (error) {
        this.error = error.message
      }
@@ -158,7 +160,7 @@ p.error {
   font-weight:  bold;
   cursor: pointer;
   text-align: center;
-  width: 8%;
+  width: 10%;
   
 }
 .btn-post1:hover{
@@ -176,7 +178,7 @@ p.error {
   font-weight:  bold;
   cursor: pointer;
   text-align: center;
-    width: 8%;
+  width: 10%;
 
 }
 .btn-post2:hover{
